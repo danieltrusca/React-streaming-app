@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 
 // import components
 import StreamList from "./streams/StreamList";
@@ -11,24 +11,26 @@ import StreamDelete from "./streams/StreamDelete";
 import Header from './Header';
 import NoMatch from './NoMatch';
 
+import history from "../history";
+
 const App = () => {
     return (
         <div className="ui container">
             
-            <BrowserRouter>
+            <Router history={history}>
                 <>
                     <Header />
                     <Switch>
                         <Route path="/" exact component={StreamList} />
                         <Route path="/streams/new" component={StreamCreate} />
-                        <Route path="/streams/edit" component={StreamEdit} />
+                        <Route path="/streams/edit/:id" component={StreamEdit} />
                         <Route path="/streams/delete" component={StreamDelete} />
                         <Route path="/streams/show" component={StreamShow} />
                         <Route path="*" component={NoMatch} />
                     </Switch>
                     
                 </>
-            </BrowserRouter>
+            </Router>
         </div>
     )
 }
